@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="OneLeg">
+  <link name="Body_Link">
+    <inertial>
+      <origin xyz="0 0 0.03" rpy="0 0 0" />
+      <mass value="120" />
+      <inertia ixx="3.636" ixy="0" ixz="0" iyy="3.636" iyz="0" izz="5.4" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Body_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Body_Link.STL" />
+      </geometry>
+    </collision>
+  </link><dynamics damping="0" friction="0"/>
+  <link name="Roll_Link">
+    <inertial>
+      <origin xyz="-3.13363478493992E-07 -3.13363478495209E-07 0.03" rpy="0 0 0" />
+      <mass value="0.00247436658781711" />
+      <inertia
+        ixx="7.40251225622148E-08"
+        ixy="2.42974557929604E-16"
+        ixz="1.02097316129604E-11"
+        iyy="7.40251225622148E-08"
+        iyz="-1.02097316129553E-11"
+        izz="1.15495108440108E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Roll_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Roll_Joint" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="Body_Link" />
+    <child link="Roll_Link" />
+    <axis xyz="1 0 0" />
+    <dynamics damping="0" friction="0"/>
+    <limit effort="100000" lower="-3" upper="3" velocity="90"/>
+  </joint>
+  <link name="Pitch_Link">
+    <inertial>
+      <origin xyz="-0.0369341854634642 0.00662796529616538 -0.0660075263235951" rpy="0 0 0" />
+      <mass value="6" />
+      <inertia
+        ixx="0.0150229154895215"
+        ixy="-0.000221704477316522"
+        ixz="-0.00573468358276225"
+        iyy="0.0189540889527442"
+        iyz="-0.000577162078509412"
+        izz="0.00515889335328988" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Pitch_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Pitch_Joint" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="Roll_Link" />
+    <child link="Pitch_Link" />
+    <axis xyz="0 1 0" />
+    <dynamics damping="0" friction="0"/>
+    <limit effort="100000" lower="-3" upper="3" velocity="90"/>
+  </joint>
+  <link name="Knee_Link">
+    <inertial>
+      <origin xyz="0.0367119699940946 -1.08342028458473E-09 -0.102238458167555" rpy="0 0 0" />
+      <mass value="4" />
+      <inertia
+        ixx="0.000588779461741259"
+        ixy="-1.54650153810167E-12"
+        ixz="0.000204678924535596"
+        iyy="0.000662718563601412"
+        iyz="-2.73874365398196E-11"
+        izz="0.000100362302423415" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Knee_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Knee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Knee_Joint" type="revolute">
+    <origin xyz="-0.16905 -0.0005 -0.33252" rpy="0 0 0" />
+    <parent link="Pitch_Link" />
+    <child link="Knee_Link" />
+    <axis xyz="0 1 0" />
+    <dynamics damping="0" friction="0"/>
+    <limit effort="100000" lower="-1.2" upper="0" velocity="90"/>
+  </joint>
+  <link name="Foot_Link">
+    <inertial>
+      <origin xyz="-0.00241794372260745 -2.50358329443489E-05 -0.0104966197075868" rpy="0 0 0" />
+      <mass value="0.1092524683809" />
+      <inertia
+        ixx="3.31992889640649E-05"
+        ixy="-2.73806222356045E-13"
+        ixz="2.92997813917888E-13"
+        iyy="4.55928756246438E-05"
+        iyz="-2.49058996475487E-09"
+        izz="6.59099336062295E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Foot_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://OneLeg/meshes/Foot_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Foot_Joint" type="fixed">
+    <origin xyz="0.12099 0 -0.32534" rpy="0 -0.34907 0" />
+    <parent link="Knee_Link" />
+    <child link="Foot_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>
